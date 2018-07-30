@@ -1,0 +1,113 @@
+<!-- ============================================================================== -->
+<!-- Project: App Rugby Glossary -->
+<!-- Description: this app display a glossary of rugby terms using Vue.js -->
+<!-- Author: Johnny S Zapata -->
+<!-- Version: 0.1 -->
+<!-- ============================================================================== -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>App Rugby Glossary</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+
+	
+	<nav class="navbar navbar-left navbar-dark sticky-top" style="background-color: red;">
+		<a class="navbar-brand mb-0" href="#">Glosario de Rugby</a>
+		<!--
+		<form class="form-inline">
+	    	<input class="form-control mr-sm-2" type="text" placeholder="buscar" aria-label="Search" v-model="search">
+	    	<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+  		</form> -->
+
+  		<div id="modale">
+    		<button id="show-modal" @click="showModal = true" class="btn btn-outline-light my-2 my-sm-0">About</button>
+    		<modal v-if="showModal" @close="showModal = false">
+    			<h3 slot="header">Glosario de Rugby</h3>
+    		</modal>
+    	</div>
+	</nav>
+
+	<script type="text/x-template" id="modal-template">
+		<transition name="modal">
+		    <div class="modal-mask">
+		      <div class="modal-wrapper">
+		        <div class="modal-container">
+		          <div class="modal-header">
+		            <slot name="header">
+		              Sobre la App
+		            </slot>
+		          </div>
+
+		          <div class="modal-body">
+		            <slot name="body">
+		              Esta breve aplicación te permite encontrar los terminos más significativos que se utilizan en el rugby. Puedes buscar terminos por la letra inicial o ver todos los terminos en el menú de selección
+		            </slot>
+		          </div>
+
+		          <div class="modal-footer">
+		            <slot name="footer">
+		              <button class="btn btn-outline-danger" @click="$emit('close')">
+		                OK
+		              </button>
+		            </slot>
+		          </div>
+		        </div>
+		      </div>
+		    </div>
+		  </transition>
+	</script>
+
+	<div id="glossary">
+		<div class="container justify-content-md-center col-md-4">
+			<br>
+			<h4 class="text">Aquí podrás encontrar todos los terminos usados en el rugby!</h4>
+			<v-select class="selected-tag" placeholder="Seleccionar Letra" :options="init" v-model="selectInit">
+			</v-select>
+		</div>
+
+		<div class="container justify-content-md-center col-md-8">
+			<ul >
+				
+				<li v-for="item in sortedArray "
+					v-on:click="toggleTerms(item)"
+					v-if="selectInit === item.init"
+					v-bind:class="[item.showTerm ? 'less': 'more', item.term]">
+					<h1>{{item.term}}</h1>
+					<p v-show="item.showTerm">{{item.description}}</p>	
+					<li v-else-if="selectInit === 'TODOS'"
+						v-bind:class="[item.showTerm ? 'less': 'more', item.term]"
+						v-on:click="toggleTerms(item)"
+						>
+						<h1>{{item.term}}</h1>
+						<p v-show="item.showTerm">{{item.description}}</p>	
+					</li>
+				</li>
+			</ul>
+		</div>		
+	</div>
+
+
+	<!-- Load core Vue.js -->
+	<!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+	<!-- include VueJS first -->
+	<script src="https://unpkg.com/vue@latest"></script>
+	<!-- use the latest release -->
+	<script src="https://unpkg.com/vue-select@latest"></script>
+	<!-- Load app vue.js -->
+	<script src="app.js"></script>
+
+	<!-- Load bootstrap -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
