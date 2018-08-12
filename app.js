@@ -100,12 +100,6 @@ const glossary = new Vue ({
 		testIf: function(){
 			return this.concept.showTerm;
 		},
-
-		// select the first character of each term
-		// characterTerm: function() {
-		// 	var stringTerm = init.split("");
-		// 	return stringTerm;
-		// },
 	},
 	computed: {
 	    // function to sort the terms by alphabet order
