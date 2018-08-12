@@ -1,7 +1,7 @@
 rugby-glossary
 ==============
 
-### Description
+## Description
 
 This web application allow find the meaning of terms used in the rugby. 
 

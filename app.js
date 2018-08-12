@@ -15,7 +15,7 @@ Vue.component('v-select', VueSelect.VueSelect);
 const terms = [
 	{
 		init: 'A',
-		term: 'Avanzar',
+		term: 'Avanzaraaaa',
 		description: "Uno de los principios más importantes del juego tanto en defensa como en ataque; siempre ir hacia adelante",
 		showTerm: false,
 	},

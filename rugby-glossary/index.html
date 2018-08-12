@@ -21,11 +21,6 @@
 	
 	<nav class="navbar navbar-left navbar-dark sticky-top" style="background-color: red;">
 		<a class="navbar-brand mb-0" href="#">Glosario de Rugby</a>
-		<!--
-		<form class="form-inline">
-	    	<input class="form-control mr-sm-2" type="text" placeholder="buscar" aria-label="Search" v-model="search">
-	    	<button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
-  		</form> -->
 
   		<div id="modale">
     		<button id="show-modal" @click="showModal = true" class="btn btn-outline-light my-2 my-sm-0">About</button>
@@ -48,7 +43,7 @@
 
 		          <div class="modal-body">
 		            <slot name="body">
-		              Esta breve aplicación te permite encontrar los terminos más significativos que se utilizan en el rugby. Puedes buscar terminos por la letra inicial o ver todos los terminos en el menú de selección
+		              Esta breve aplicación te permite encontrar los términos más significativos que se utilizan en el rugby union. Puedes buscar términos por la letra inicial o ver todos los términos en el menú de selección
 		            </slot>
 		          </div>
 
@@ -68,8 +63,8 @@
 	<div id="glossary">
 		<div class="container justify-content-md-center col-md-4">
 			<br>
-			<h4 class="text">Aquí podrás encontrar todos los terminos usados en el rugby!</h4>
-			<v-select class="selected-tag" placeholder="Seleccionar Letra" :options="init" v-model="selectInit">
+			<h4 class="text">Busca términos por letra o selecciona todos los términos!</h4>
+			<v-select class="selected-tag test" placeholder="Selecciona una Letra" :options="init" v-model="selectInit">
 			</v-select>
 		</div>
 
@@ -80,7 +75,7 @@
 					v-on:click="toggleTerms(item)"
 					v-if="selectInit === item.init"
 					v-bind:class="[item.showTerm ? 'less': 'more', item.term]">
-					<h1>{{item.term}}</h1>
+					<h1 >{{item.term}}</h1>
 					<p v-show="item.showTerm">{{item.description}}</p>	
 					<li v-else-if="selectInit === 'TODOS'"
 						v-bind:class="[item.showTerm ? 'less': 'more', item.term]"

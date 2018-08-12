@@ -6,6 +6,10 @@ body {
 	color: #ffffff;
 }
 
+.selected-tag {
+  color: yellow;
+}
+
 li {
     list-style-type: none;
     padding: 10px 10px;
